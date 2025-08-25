@@ -49,13 +49,11 @@ const setBg = (path) => {
       bgImage.value = newBg
       clipPath.value = 'inset(0 100% 0 0)'
 
-      // requestAnimationFrame assicura che il browser abbia registrato il clipPath iniziale
       requestAnimationFrame(() => {
         clipPath.value = 'inset(0 0 0 0)'
       })
     }
   } else {
-    // fallback lato server
     bgImage.value = newBg
     clipPath.value = 'inset(0 0 0 0)'
   }

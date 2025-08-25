@@ -1,4 +1,5 @@
 <template>
+  <div class="absolute inset-0 bg-black/20"></div>
   <div class="relative flex w-full flex-col items-center space-y-12 p-6 text-white">
     <!-- Bottone Home -->
     <HomeButton class="h-6 w-6 text-white drop-shadow-lg" />
@@ -42,51 +43,87 @@
       </div>
     </div>
 
-    <!-- Social & Community -->
+    <!-- Social & Community (Swiper Slider) -->
     <div class="mx-auto w-full max-w-4xl">
       <h2 class="mb-6 text-center text-2xl font-bold">🌐 Community & Social</h2>
-      <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
-        <div
+
+      <Swiper
+        :slides-per-view="1"
+        :space-between="16"
+        :breakpoints="{ 1024: { slidesPerView: 3 } }"
+        navigation
+        loop
+        centered-slides="true"
+        :modules="[Navigation]"
+        class="mySwiper px-8"
+      >
+        <SwiperSlide
           v-for="link in links"
           :key="link.title"
           @click="open(link.url)"
-          class="flex transform cursor-pointer flex-col items-center gap-2 rounded-lg border-2 border-blue-400 bg-white bg-opacity-20 p-4 backdrop-blur transition hover:-translate-y-1 hover:shadow-lg"
+          class="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-blue-400 bg-white bg-opacity-20 p-4 backdrop-blur transition hover:-translate-y-1 hover:shadow-lg"
         >
           <component :is="link.icon" class="h-8 w-8 text-white" />
           <span class="text-center text-sm">{{ link.title }}</span>
-        </div>
-      </div>
+        </SwiperSlide>
+      </Swiper>
     </div>
 
-    <!-- Playlist J-Music -->
-    <div class="mx-auto w-full max-w-3xl">
+    <!-- Playlist J-Music (Carousel con embed) -->
+    <div class="mx-auto w-full max-w-5xl">
       <h2 class="mb-6 text-center text-2xl font-bold">🎶 J-Music Playlist</h2>
-      <div class="space-y-4">
-        <button
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div
           v-for="playlist in playlists"
           :key="playlist.title"
-          @click="open(playlist.url)"
-          class="w-full rounded-lg bg-blue-900 bg-opacity-40 p-4 text-left transition hover:bg-blue-800"
+          class="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg bg-black/70 p-4 shadow-lg transition hover:scale-105"
         >
-          <span class="font-semibold">{{ playlist.title }}</span>
-        </button>
+          <h3 class="mb-2 text-center font-semibold text-white">{{ playlist.title }}</h3>
+
+          <div class="flex w-full items-center justify-center">
+            <iframe
+              v-if="playlist.type === 'spotify'"
+              :src="playlist.embed"
+              width="100%"
+              height="380"
+              frameborder="0"
+              allowtransparency="true"
+              allow="encrypted-media"
+              class="rounded-lg"
+            ></iframe>
+
+            <iframe
+              v-else-if="playlist.type === 'youtube'"
+              :src="playlist.embed"
+              width="100%"
+              height="215"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              class="rounded-lg"
+            ></iframe>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-iframe {
-  border-radius: 20px;
-}
-</style>
-
 <script setup>
 import HomeButton from '~/components/HomeButton.vue'
 import { ref } from 'vue'
 import { Instagram, Youtube, Mail, MessageCircle, X, Globe, Shirt, Flag } from 'lucide-vue-next'
+
+// Swiper 10+ imports corretti
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { Navigation } from 'swiper/modules'
+
 const open = (url) => window.open(url, '_blank')
 
+// Eventi
 const events = [
   {
     title: 'Fandemonio NIGHT! Gunpla e Gundam TGC!',
@@ -95,6 +132,7 @@ const events = [
   },
 ]
 
+// Links social
 const links = [
   { title: 'Instagram', url: 'https://www.instagram.com/fandemonio.podcast/', icon: Instagram },
   { title: 'YouTube', url: 'https://www.youtube.com/@fandemonio', icon: Youtube },
@@ -114,8 +152,31 @@ const links = [
   },
 ]
 
+// Playlist embed
 const playlists = [
-  { title: 'Spotify J-Music Playlist', url: 'https://open.spotify.com/playlist/...' },
-  { title: 'YouTube J-Music Playlist', url: 'https://www.youtube.com/playlist?list=...' },
+  {
+    title: 'Spotify J-Music Playlist',
+    type: 'spotify',
+    embed: 'https://open.spotify.com/embed/playlist/5hYjohs1J5xISRXgwPhpnQ?utm_source=generator',
+  },
+  {
+    title: 'YouTube J-Music Playlist',
+    type: 'youtube',
+    embed: 'https://www.youtube.com/embed/videoseries?list=PLvMk0H0AsMeBN3sF_MrMZg4ZMu_9t83rb',
+  },
 ]
 </script>
+
+<style scoped>
+iframe {
+  border-radius: 20px;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+</style>

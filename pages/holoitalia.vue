@@ -1,4 +1,5 @@
 <template>
+  <div class="absolute inset-0 bg-black/20"></div>
   <div class="relative flex h-screen flex-col items-center justify-center text-white">
     <HomeButton />
 
