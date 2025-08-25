@@ -13,6 +13,7 @@
 
     <div class="relative z-10">
       <slot />
+      <Footer />
     </div>
   </div>
 </template>
@@ -20,6 +21,7 @@
 <script setup>
 import { ref, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import Footer from '~/components/Footer.vue'
 
 const route = useRoute()
 const bgImage = ref('')
