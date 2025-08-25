@@ -1,19 +1,24 @@
 <template>
-  <div class="min-h-screen space-y-4 bg-gray-100 p-8">
-    <Card
-      title="Podcast Spreaker"
-      description="Ascolta i nostri episodi più recenti!"
-      link="https://www.spreaker.com/podcast/fandemonio--6278226"
-    />
-    <Card
-      title="Fandemonio Linktree"
-      description="Tutti i nostri link in un posto solo"
-      link="https://linktr.ee/fandemonio"
-    />
+  <div class="flex h-screen flex-col items-center justify-center gap-6">
+    <button
+      class="transform rounded-lg bg-white px-6 py-3 text-lg font-bold text-black shadow transition hover:scale-105"
+      @click="go('/holoitalia')"
+    >
+      Holoitalia
+    </button>
+
+    <button
+      class="transform rounded-lg bg-white px-6 py-3 text-lg font-bold text-black shadow transition hover:scale-105"
+      @click="go('/fandemonio')"
+    >
+      Fandemonio
+    </button>
   </div>
 </template>
 
 <script setup>
-import Card from '../components/Card.vue'
-import '~/assets/css/tailwind.css'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
+const go = (path) => router.push(path)
 </script>
