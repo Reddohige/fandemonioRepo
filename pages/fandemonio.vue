@@ -74,7 +74,7 @@
     </div>
 
     <!-- Playlist J-Music (Carousel con embed) -->
-    <div class="mx-auto w-full max-w-5xl">
+    <div class="mx-auto mb-6 w-full max-w-5xl">
       <h2 class="mb-6 text-center text-2xl font-bold">🎶 J-Music Playlist</h2>
 
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -111,6 +111,9 @@
         </div>
       </div>
     </div>
+    <br />
+    <br />
+    <br />
   </div>
 </template>
 
