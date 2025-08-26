@@ -44,27 +44,31 @@
     </div>
 
     <!-- Social & Community (Swiper Slider) -->
-    <div class="mx-auto w-full max-w-4xl">
+    <div class="mx-auto w-full max-w-5xl">
       <h2 class="mb-6 text-center text-2xl font-bold">🌐 Community & Social</h2>
 
       <Swiper
         :slides-per-view="1"
-        :space-between="16"
-        :breakpoints="{ 1024: { slidesPerView: 3 } }"
+        :space-between="20"
+        :breakpoints="{
+          640: { slidesPerView: 2 },
+          1024: { slidesPerView: 4 },
+        }"
         navigation
-        loop
-        centered-slides="true"
+        :loop="false"
         :modules="[Navigation]"
-        class="mySwiper px-8"
+        class="mySwiper relative px-8"
       >
         <SwiperSlide
           v-for="link in links"
           :key="link.title"
           @click="open(link.url)"
-          class="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-blue-400 bg-white bg-opacity-20 p-4 backdrop-blur transition hover:-translate-y-1 hover:shadow-lg"
+          class="flex cursor-pointer flex-col items-center justify-center gap-3 rounded-lg border-2 border-blue-400 bg-white/20 p-6 text-center backdrop-blur transition hover:-translate-y-1 hover:shadow-lg"
         >
-          <component :is="link.icon" class="h-8 w-8 text-white" />
-          <span class="text-center text-sm">{{ link.title }}</span>
+          <div class="flex flex-col items-center justify-center">
+            <component :is="link.icon" class="h-10 w-10 text-white" />
+            <span class="text-sm font-medium">{{ link.title }}</span>
+          </div>
         </SwiperSlide>
       </Swiper>
     </div>
@@ -130,15 +134,24 @@ const events = [
     url: 'https://www.eventbrite.com/e/biglietti-fandemonio-night-gunpla-e-gundam-tgc-1554659882559',
     desc: 'Gunpla, carte e risate! Venerdì 29/08 ore 20:00 @ Casa dei Giochi (MI) montiamo Gundam e giochiamo al nuovo TCG!',
   },
+  {
+    title: 'Fandemonio Pre-Concerto Meetup: Speciale Ado Live a Milano ✨',
+    url: 'https://www.eventbrite.com/e/fandemonio-pre-concerto-meetup-speciale-ado-live-a-milano-tickets-1333887426199?aff=ebdsoporgprofile',
+    desc: 'Sei un Fandemone e parteciperai al concerto di Ado il 2 luglio 2025 ad Assago, Milano? Unisciti al meetup organizzato da noi!',
+  },
 ]
 
 // Links social
 const links = [
-  { title: 'Instagram', url: 'https://www.instagram.com/fandemonio.podcast/', icon: Instagram },
-  { title: 'YouTube', url: 'https://www.youtube.com/@fandemonio', icon: Youtube },
-  { title: 'X', url: 'https://x.com/fandemoniopod', icon: X },
+  { title: 'Instagram', url: 'https://www.instagram.com/ilverofandemonio/', icon: Instagram },
+  {
+    title: 'YouTube',
+    url: 'https://www.youtube.com/channel/UCtwAe6eGpUfcrc8vrI3uAKwo',
+    icon: Youtube,
+  },
+  { title: 'X', url: 'https://x.com/ilfandemonio', icon: X },
   { title: 'Telegram', url: 'https://t.me/fandemonio', icon: MessageCircle },
-  { title: 'Reddit', url: 'https://reddit.com/r/fandemonio', icon: Globe },
+  { title: 'Reddit', url: 'https://reddit.com/r/Fandemonio', icon: Globe },
   { title: 'Email', url: 'mailto:lagne@fandemonio.com', icon: Mail },
   {
     title: 'Happi Di Fandemonio!',

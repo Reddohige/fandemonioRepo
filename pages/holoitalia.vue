@@ -4,7 +4,7 @@
     <HomeButton />
 
     <h1 class="mb-4 text-center text-5xl font-extrabold drop-shadow-xl">
-      Benvenuto su <span class="text-yellow-300">Holoitalia</span>
+      Welcome on <span class="text-yellow-300">Holoitalia</span>
     </h1>
 
     <p class="mb-8 max-w-md text-center text-lg drop-shadow-md">
