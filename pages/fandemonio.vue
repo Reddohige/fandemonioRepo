@@ -6,7 +6,7 @@
 
     <!-- Hero / Titolo -->
     <div class="mx-auto max-w-3xl text-center">
-      <h1 class="mb-4 text-5xl font-extrabold tracking-wider drop-shadow-[0_0_20px_#ff6ec7]">
+      <h1 class="mb-4 mt-4 text-5xl font-extrabold tracking-wider drop-shadow-[0_0_20px_#ff6ec7]">
         Fandemonio 🎧
       </h1>
       <p class="text-lg drop-shadow-md">
@@ -54,9 +54,12 @@
           640: { slidesPerView: 2 },
           1024: { slidesPerView: 4 },
         }"
-        navigation
         :loop="false"
-        :modules="[Navigation]"
+        :spaceBetween="30"
+        :centeredSlides="true"
+        :pagination="{ clickable: true }"
+        :navigation="true"
+        :modules="[Navigation, Pagination]"
         class="mySwiper relative px-8"
       >
         <SwiperSlide
@@ -126,7 +129,7 @@ import { Instagram, Youtube, Mail, MessageCircle, X, Globe, Shirt, Flag } from '
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { Navigation } from 'swiper/modules'
+import { Navigation, Pagination } from 'swiper/modules'
 
 const open = (url) => window.open(url, '_blank')
 
@@ -194,5 +197,14 @@ iframe {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.swiper-pagination-bullet {
+  opacity: 0.7;
+  background: white !important;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #ec4899 !important; /* rosa Tailwind fuchsia-500 */
 }
 </style>
