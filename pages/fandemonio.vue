@@ -45,50 +45,42 @@
 
     <!-- Social & Community (Swiper Slider) -->
     <div class="mx-auto w-full max-w-5xl">
-      <h2 class="mb-6 text-center text-2xl font-bold">🌐 Community & Social</h2>
+      <h2 class="mb-6 text-center text-2xl drop-shadow-[0_0_10px_#6b4ce3]">
+        🌐 Community & Social
+      </h2>
 
-      <Swiper
-        :slides-per-view="1"
-        :space-between="20"
-        :breakpoints="{
-          640: { slidesPerView: 2 },
-          1024: { slidesPerView: 4 },
-        }"
-        :loop="false"
-        :spaceBetween="30"
-        :centeredSlides="true"
-        :pagination="{ clickable: true }"
-        :navigation="true"
-        :modules="[Navigation, Pagination]"
-        class="mySwiper relative px-8"
-      >
-        <SwiperSlide
+      <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+        <div
           v-for="link in links"
           :key="link.title"
           @click="open(link.url)"
           class="flex cursor-pointer flex-col items-center justify-center gap-3 rounded-lg border-2 border-blue-400 bg-white/20 p-6 text-center backdrop-blur transition hover:-translate-y-1 hover:shadow-lg"
         >
-          <div class="flex flex-col items-center justify-center">
-            <component :is="link.icon" class="h-10 w-10 text-white" />
-            <span class="text-sm font-medium">{{ link.title }}</span>
-          </div>
-        </SwiperSlide>
-      </Swiper>
+          <component :is="link.icon" class="mb-2 h-10 w-10 text-white" />
+          <span class="text-sm font-medium">{{ link.title }}</span>
+        </div>
+      </div>
     </div>
 
     <!-- Playlist J-Music (Carousel con embed) -->
     <div class="mx-auto mb-6 w-full max-w-5xl">
-      <h2 class="mb-6 text-center text-2xl font-bold">🎶 J-Music Playlist</h2>
+      <h2 class="mb-6 text-center text-2xl font-bold drop-shadow-[0_0_8px_#6b4ce3]">
+        🎶 J-Music Playlist
+      </h2>
 
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div
           v-for="playlist in playlists"
           :key="playlist.title"
-          class="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg bg-black/70 p-4 shadow-lg transition hover:scale-105"
+          class="flex h-full cursor-pointer flex-col rounded-lg bg-black/70 p-4 shadow-lg transition hover:scale-105"
         >
-          <h3 class="mb-2 text-center font-semibold text-white">{{ playlist.title }}</h3>
+          <!-- Titolo sempre in alto -->
+          <h3 class="mb-2 text-center font-semibold text-white drop-shadow-[0_0_6px_#6b4ce3]">
+            {{ playlist.title }}
+          </h3>
 
-          <div class="flex w-full items-center justify-center">
+          <!-- Corpo centrato verticalmente -->
+          <div class="flex flex-1 items-center justify-center">
             <iframe
               v-if="playlist.type === 'spotify'"
               :src="playlist.embed"
@@ -114,6 +106,7 @@
         </div>
       </div>
     </div>
+
     <br />
     <br />
     <br />
