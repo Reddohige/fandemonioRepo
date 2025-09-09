@@ -20,14 +20,15 @@
 
 <script setup>
 import { ref, watch, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import Footer from '~/components/Footer.vue'
 
 const route = useRoute()
 const config = useRuntimeConfig()
 const baseURL = config.app.baseURL || '/'
+
 const bgImage = ref('')
-const clipPath = ref('inset(0 100% 0 0)')
-let callback = null
+const clipPath = ref('inset(0 0 0 0)')
 let isClient = false
 
 onMounted(() => {
@@ -41,15 +42,14 @@ const bgMap = {
 }
 
 const setBg = (path) => {
-  const newBg = bgMap[path] || '/index.webp'
+  const newBg = bgMap[path] || `${baseURL}index.webp`
 
   if (isClient) {
     const img = new Image()
     img.src = newBg
     img.onload = () => {
-      bgImage.value = newBg
       clipPath.value = 'inset(0 100% 0 0)'
-
+      bgImage.value = newBg
       requestAnimationFrame(() => {
         clipPath.value = 'inset(0 0 0 0)'
       })
@@ -60,16 +60,11 @@ const setBg = (path) => {
   }
 }
 
-const onTransitionEnd = () => {
-  if (callback) callback()
-  callback = null
-}
+const onTransitionEnd = () => {}
 
 watch(
   () => route.path,
-  (newPath) => {
-    setBg(newPath)
-  },
+  (newPath) => setBg(newPath),
   { immediate: true }
 )
 </script>

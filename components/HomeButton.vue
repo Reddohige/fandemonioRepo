@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     to="/"
-    class="absolute left-4 top-4 transform rounded-full p-2 transition-transform hover:-rotate-6 hover:scale-110"
+    class="mx-auto mt-4 flex w-max rounded-full p-2 transition-transform hover:-rotate-6 hover:scale-110"
     title="Torna alla Home"
   >
     <HomeIcon class="h-6 w-6 text-white" />

@@ -3,6 +3,10 @@
   <div class="relative flex h-screen flex-col items-center justify-center text-white">
     <HomeButton />
 
+    <!-- <div class="mb-8 rounded-xl bg-black/40 p-4 backdrop-blur-sm">
+      <img src="/hololive_logo.svg" alt="Hololive Logo" class="h-20 w-auto" />
+    </div> -->
+
     <h1 class="mb-4 text-center text-5xl font-extrabold drop-shadow-xl">
       Welcome on <span class="text-yellow-300">Holoitalia</span>
     </h1>
@@ -27,6 +31,13 @@
         <X class="h-5 w-5" />
       </button>
     </div>
+
+    <LinkCard
+      link="https://docs.google.com/forms/d/e/1FAIpQLSd5xQNDnFqSbIBeUwwCWQQDKkH6vbyhOuxymqBYVMBtsYEJQw/viewform"
+      border-color="border-yellow-400"
+      title="📝 Hololive Fans Survey"
+      description="Partecipate al sondaggio e fate sentire la vostra voce!"
+    />
   </div>
 </template>
 
@@ -34,8 +45,9 @@
 import HomeButton from '~/components/HomeButton.vue'
 import { ref } from 'vue'
 import { Instagram, X } from 'lucide-vue-next'
+import LinkCard from '~/components/LinkCard.vue'
 
-const instagramUrl = ref('https://www.instagram.com/holoitalia_official/')
+const instagramUrl = ref('https://www.instagram.com/holoitalia/')
 const xUrl = ref('https://x.com/HoloItalia')
 const openLink = (url) => window.open(url, '_blank')
 </script>

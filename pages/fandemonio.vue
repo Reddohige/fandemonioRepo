@@ -1,11 +1,10 @@
 <template>
   <div class="absolute inset-0 bg-black/20"></div>
   <div class="relative flex w-full flex-col items-center space-y-12 p-6 text-white">
-    <!-- Bottone Home -->
-    <HomeButton class="h-6 w-6 text-white drop-shadow-lg" />
-
     <!-- Hero / Titolo -->
     <div class="mx-auto max-w-3xl text-center">
+      <!-- Bottone Home -->
+      <HomeButton />
       <h1 class="mb-4 mt-4 text-5xl font-extrabold tracking-wider drop-shadow-[0_0_20px_#ff6ec7]">
         Fandemonio 🎧
       </h1>
